@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import styles from "./headerLinkDropDown.module.css";
 import _ from "lodash";
+import { getFinalStyles } from "../../util/auxStyles.js";
 
 class HeaderLinkDropDown extends Component {
   constructor(props) {
     super(props);
+    this.parentDivId = _.uniqueId("parent-div-");
     this.dropDownId = _.uniqueId("drop-down-");
     if (props.animationSpeed !== undefined) {
       this.animationSpeed = props.animationSpeed;
@@ -14,17 +15,8 @@ class HeaderLinkDropDown extends Component {
 
   state = {};
   animationSpeed = "slow";
+  parentDivId = "";
   dropDownId = "";
-
-  show = () => {
-    var screensize = $(window).width();
-    if (screensize > 991)
-      $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
-  };
-
-  hide = () => {
-    $(`#${this.dropDownId}`).stop(true, true).css("display", "none");
-  };
 
   dropDownDiv_DefaultStyles = {
     display: "none",
@@ -36,19 +28,44 @@ class HeaderLinkDropDown extends Component {
     top: "35px",
   };
 
-  titleStyle = {
+  title_DefaultStyles = {
     marginRight: "6px",
   };
 
-  getFinalStyles(internalStyles, externalStyles) {
-    const styles = internalStyles;
-    if (externalStyles !== undefined) {
-      Object.keys(externalStyles).forEach((key) => {
-        styles[key] = externalStyles[key];
-      });
-    }
-    return styles;
-  }
+  caretDownStyles = {
+    position: "relative",
+    top: "3px",
+    marginRight: "4px",
+  };
+
+  showAlt = () => {
+    var dropDown = $(`#${this.dropDownId}`).parent().parent();
+    var dropdownTop = $(`#${this.dropDownId}`).parent().parent().outerHeight();
+    $(`#${this.dropDownId}`).css("top", dropdownTop);
+    var screensize = $(window).width();
+    if (screensize > 200)
+      $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
+  };
+
+  show = () => {
+    var screensize = $(window).width();
+    if (screensize > 200)
+      $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
+  };
+
+  hide = () => {
+    $(`#${this.dropDownId}`).stop(true, true).css("display", "none");
+  };
+
+  // getFinalStyles(internalStyles, externalStyles) {
+  //   const styles = internalStyles;
+  //   if (externalStyles !== undefined) {
+  //     Object.keys(externalStyles).forEach((key) => {
+  //       styles[key] = externalStyles[key];
+  //     });
+  //   }
+  //   return styles;
+  // }
 
   getTitle(title, externalTitleStyle) {
     if (typeof title === "string") {
@@ -56,7 +73,7 @@ class HeaderLinkDropDown extends Component {
         <a
           onMouseEnter={this.show}
           href={"http://www.kuff.com"}
-          style={this.getFinalStyles(this.titleStyle, externalTitleStyle)}
+          style={getFinalStyles(this.title_DefaultStyles, externalTitleStyle)}
         >
           {title}
         </a>
@@ -74,20 +91,21 @@ class HeaderLinkDropDown extends Component {
       titleStyle: externalTitleStyle,
     } = this.props;
     return (
-      <div onMouseLeave={this.hide}>
-        <span onMouseEnter={this.show}>
+      <div id={`${this.parentDivId}`} onMouseLeave={this.hide}>
+        <span onMouseEnter={this.showAlt}>
           {this.getTitle(title, externalTitleStyle)}
           <i
             id="caret"
-            className={`fa fa-caret-down ${styles.caretDown}`}
+            className={`fa fa-caret-down`}
             aria-hidden="true"
+            style={this.caretDownStyles}
           ></i>
         </span>
 
         <div
           id={this.dropDownId}
           className={`drop-down-menu`}
-          style={this.getFinalStyles(
+          style={getFinalStyles(
             this.dropDownDiv_DefaultStyles,
             externalDivStyle
           )}

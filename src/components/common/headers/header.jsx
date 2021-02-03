@@ -1,29 +1,49 @@
 import React, { Component } from "react";
-import styles from "./header.module.css";
+import { getFinalStyles } from "../../util/auxStyles.js";
 
 class Header extends Component {
   state = {};
 
+  //#region styles
+  div_DefaultStyle = {
+    lineHeight: "35px",
+    boxSizing: "border-box",
+    overflow: "auto",
+  };
+
+  li_DefaultStyle = {
+    bordeColor: "#ccc",
+    padding: "0 10px",
+    float: "right",
+    listStyleType: "none",
+    borderLeft: "1px dotted #5b9ad4",
+  };
+
+  ul_DefaultStyle = {
+    listStyle: "none",
+    padding: "0",
+    margin: "0",
+    boxSizing: "border-box",
+  };
+
+  //#endregion
+
+  //#region methods
   renderLi(children) {
-    return React.Children.map(children, (i) => (
-      <li style={i.props.liStyle} className={styles.li}>
-        {i}
-      </li>
+    const result = React.Children.map(children, (i) => (
+      <li style={getFinalStyles(this.li_DefaultStyle, i.props.liStyle)}>{i}</li>
     ));
+    return result;
   }
+  //#endregion
 
   render() {
     const { children } = this.props;
     return (
       <nav>
         <div className={`container`}>
-          <div style={{ lineHeight: "35px" }}>
-            {/* <ul className={styles.ul}>
-              {React.Children.map(children, (i) => (
-                <li className={styles.li}>{i}</li>
-              ))} */}
-            {this.renderLi(children)}
-            {/* </ul> */}
+          <div style={this.div_DefaultStyle}>
+            <ul style={this.ul_DefaultStyle}>{this.renderLi(children)}</ul>
           </div>
         </div>
       </nav>
