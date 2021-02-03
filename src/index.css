@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "WYekan";
+  src: url("./persian-fonts/WYekan.eot") format("eot"),
+    url("./persian-fonts/WYekan.ttf") format("truetype");
+}
+@font-face {
+  font-family: "BKoodakBold";
+  src: url("./persian-fonts/BKoodakBold.eot") format("eot"),
+    url("./persian-fonts/BKoodakBold.woff") format("woff"),
+    url("./persian-fonts/BKoodakBold.ttf") format("truetype");
+}
+
+/*------------------------------------------------------------------ */
+/* 1. General styles
+/*------------------------------------------------------------------ */
+
+html {
+  overflow: -moz-scrollbars-vertical;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #dcdbdb;
+  color: #222;
+  font-family: "WYekan", sans-serif;
+  line-height: 21px;
+}
+body {
+  font-size: 16px;
+}
+
+div {
+  direction: rtl;
+}
+
+a,
+a b {
+  color: #3e7cb4;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover,
+a b:hover {
+  text-decoration: none;
+  color: #000;
+}
+a:focus {
+  outline: none;
+}
+
+img {
+  vertical-align: inherit;
+}

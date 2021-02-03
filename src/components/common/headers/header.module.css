@@ -1,0 +1,15 @@
+.li {
+  border-color: #ccc;
+  padding: 0 10px;
+  float: right;
+  list-style-type: none;
+  border-left: 1px dotted #5b9ad4;
+  /* border-right: 1px dotted #5b9ad4; */
+}
+
+.ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

@@ -1,0 +1,13 @@
+.headerLink {
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+
+  position: relative;
+  top: 1px;
+  margin-right: 1px;
+}
+
+.headerLink:hover {
+  text-decoration: underline;
+}
