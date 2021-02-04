@@ -33,6 +33,7 @@ class LanguageDropDown extends Component {
 
   state = {};
   render() {
+    const { headerId } = this.props;
     return (
       <HeaderLinkDropDown
         title={
@@ -51,6 +52,7 @@ class LanguageDropDown extends Component {
         }
         dropDownDivStyles={{ padding: "0px" }}
         animationSpeed="fast"
+        headerId={headerId}
       >
         <ul style={this.ulStyle}>
           <li style={this.liStyle}>

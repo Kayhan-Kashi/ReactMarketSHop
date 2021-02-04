@@ -28,12 +28,14 @@ class CurrencyDropDown extends Component {
   };
 
   render() {
+    const { headerId } = this.props;
     return (
       <HeaderLinkDropDown
         title="تومان"
         dropDownDivStyles={{ padding: "0px" }}
         animationSpeed="fast"
         titleStyle={{ color: "#333333", fontSize: "11px" }}
+        headerId={headerId}
       >
         <ul style={this.ulStyle}>
           <li style={this.liStyle}>

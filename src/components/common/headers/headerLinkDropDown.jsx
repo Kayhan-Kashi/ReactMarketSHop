@@ -38,34 +38,20 @@ class HeaderLinkDropDown extends Component {
     marginRight: "4px",
   };
 
-  showAlt = () => {
-    var dropDown = $(`#${this.dropDownId}`).parent().parent();
-    var dropdownTop = $(`#${this.dropDownId}`).parent().parent().outerHeight();
-    $(`#${this.dropDownId}`).css("top", dropdownTop);
+  showDropDown = (headerId) => {
+    let headerHeight = this.dropDownDiv_DefaultStyles.top;
+    if (headerId) headerHeight = $(`#${headerId}`).outerHeight();
+
+    $(`#${this.dropDownId}`).css("top", headerHeight);
+
     var screensize = $(window).width();
     if (screensize > 200)
       $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
   };
 
-  show = () => {
-    var screensize = $(window).width();
-    if (screensize > 200)
-      $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
-  };
-
-  hide = () => {
+  hideDropDown = () => {
     $(`#${this.dropDownId}`).stop(true, true).css("display", "none");
   };
-
-  // getFinalStyles(internalStyles, externalStyles) {
-  //   const styles = internalStyles;
-  //   if (externalStyles !== undefined) {
-  //     Object.keys(externalStyles).forEach((key) => {
-  //       styles[key] = externalStyles[key];
-  //     });
-  //   }
-  //   return styles;
-  // }
 
   getTitle(title, externalTitleStyle) {
     if (typeof title === "string") {
@@ -89,10 +75,11 @@ class HeaderLinkDropDown extends Component {
       children,
       dropDownDivStyles: externalDivStyle,
       titleStyle: externalTitleStyle,
+      headerId,
     } = this.props;
     return (
-      <div id={`${this.parentDivId}`} onMouseLeave={this.hide}>
-        <span onMouseEnter={this.showAlt}>
+      <div id={`${this.parentDivId}`} onMouseLeave={() => this.hideDropDown()}>
+        <span onMouseEnter={() => this.showDropDown(headerId)}>
           {this.getTitle(title, externalTitleStyle)}
           <i
             id="caret"
@@ -109,7 +96,7 @@ class HeaderLinkDropDown extends Component {
             this.dropDownDiv_DefaultStyles,
             externalDivStyle
           )}
-          onMouseLeave={this.hide}
+          onMouseLeave={() => this.hideDropDown()}
         >
           {children}
         </div>

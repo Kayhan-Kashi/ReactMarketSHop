@@ -38,11 +38,11 @@ class Header extends Component {
   //#endregion
 
   render() {
-    const { children } = this.props;
+    const { children, headerId } = this.props;
     return (
       <nav>
         <div className={`container`}>
-          <div style={this.div_DefaultStyle}>
+          <div style={this.div_DefaultStyle} id={headerId}>
             <ul style={this.ul_DefaultStyle}>{this.renderLi(children)}</ul>
           </div>
         </div>

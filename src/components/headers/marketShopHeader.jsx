@@ -13,15 +13,16 @@ import UserHeader from "./userHeader";
 
 class MarketShopHeader extends Component {
   state = {};
+  headerId = "header";
   text =
     "این یک بلاک مدیریت محتواست. شما میتوانید هر نوع محتوای html نوشتاری یا تصویری را در آن قرار دهید. این یک متن است";
 
   render() {
     return (
-      <Header>
+      <Header headerId={this.headerId}>
         <HeaderLink link="#">تسویه حساب</HeaderLink>
         <HeaderLink link="#">لیست علاقه مندی (0)</HeaderLink>
-        <HeaderLinkDropDown title="بلاک سفارشی">
+        <HeaderLinkDropDown title="بلاک سفارشی" headerId={this.headerId}>
           <HeaderCustomBlock
             imgLink={pic1}
             title="بلاک های محتوا"
@@ -39,8 +40,14 @@ class MarketShopHeader extends Component {
         </HeaderLinkDropDown>
         <EmailHeaderLink>info@marketshop.com</EmailHeaderLink>
         <TelHeaderlink> 98778656 21+</TelHeaderlink>
-        <LanguageDropDown liStyle={{ marginBottom: "0px" }}></LanguageDropDown>
-        <CurrencyDropDown title="تومان"></CurrencyDropDown>
+        <LanguageDropDown
+          liStyle={{ marginBottom: "0px" }}
+          headerId={this.headerId}
+        ></LanguageDropDown>
+        <CurrencyDropDown
+          title="تومان"
+          headerId={this.headerId}
+        ></CurrencyDropDown>
         <UserHeader liStyle={{ float: "left" }}></UserHeader>
       </Header>
     );
