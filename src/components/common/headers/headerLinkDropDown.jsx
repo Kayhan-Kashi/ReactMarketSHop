@@ -6,8 +6,8 @@ import { getFinalStyles } from "../../util/auxStyles.js";
 class HeaderLinkDropDown extends Component {
   constructor(props) {
     super(props);
-    this.parentDivId = _.uniqueId("parent-div-");
-    this.dropDownId = _.uniqueId("drop-down-");
+    this.parentDivId = _.uniqueId("parentDiv-");
+    this.dropDownId = _.uniqueId("dropdown-");
     if (props.animationSpeed !== undefined) {
       this.animationSpeed = props.animationSpeed;
     }
@@ -18,14 +18,19 @@ class HeaderLinkDropDown extends Component {
   parentDivId = "";
   dropDownId = "";
 
+  //#region styles
   dropDownDiv_DefaultStyles = {
     display: "none",
+    float: "left",
     overflow: "hidden",
     lineHeight: "22px",
     background: "#fff",
     padding: "10px",
     position: "absolute",
     top: "35px",
+    zIndex: "1013",
+    margin: "0px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
   };
 
   title_DefaultStyles = {
@@ -37,13 +42,10 @@ class HeaderLinkDropDown extends Component {
     top: "3px",
     marginRight: "4px",
   };
+  //#endregion
 
+  //#region methods
   showDropDown = (headerId) => {
-    let headerHeight = this.dropDownDiv_DefaultStyles.top;
-    if (headerId) headerHeight = $(`#${headerId}`).outerHeight();
-
-    $(`#${this.dropDownId}`).css("top", headerHeight);
-
     var screensize = $(window).width();
     if (screensize > 200)
       $(`#${this.dropDownId}`).slideDown(this.animationSpeed);
@@ -56,18 +58,20 @@ class HeaderLinkDropDown extends Component {
   getTitle(title, externalTitleStyle) {
     if (typeof title === "string") {
       return (
-        <a
-          onMouseEnter={this.show}
-          href={"http://www.kuff.com"}
+        <button
           style={getFinalStyles(this.title_DefaultStyles, externalTitleStyle)}
+          onMouseEnter={() => this.showDropDown("header")}
+          className="btn-link dropdown-toggle"
+          data-toggle="dropdown"
         >
           {title}
-        </a>
+        </button>
       );
     } else {
       return title;
     }
   }
+  //#endregion
 
   render() {
     const {
@@ -91,7 +95,7 @@ class HeaderLinkDropDown extends Component {
 
         <div
           id={this.dropDownId}
-          className={`drop-down-menu`}
+          className={`dropdown-menu`}
           style={getFinalStyles(
             this.dropDownDiv_DefaultStyles,
             externalDivStyle

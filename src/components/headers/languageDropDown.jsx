@@ -56,7 +56,11 @@ class LanguageDropDown extends Component {
       >
         <ul style={this.ulStyle}>
           <li style={this.liStyle}>
-            <button className="btn btn-link" style={this.btnStyle}>
+            <button
+              className="btn btn-link"
+              style={this.btnStyle}
+              data-toggle="dropdown"
+            >
               <img
                 style={this.imgStyle}
                 src={englishFlag}

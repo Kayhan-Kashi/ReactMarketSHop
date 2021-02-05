@@ -8,7 +8,7 @@ class Header extends Component {
   div_DefaultStyle = {
     lineHeight: "35px",
     boxSizing: "border-box",
-    overflow: "auto",
+    // overflow: "auto",
   };
 
   li_DefaultStyle = {
@@ -17,6 +17,7 @@ class Header extends Component {
     float: "right",
     listStyleType: "none",
     borderLeft: "1px dotted #5b9ad4",
+    position: "relative",
   };
 
   ul_DefaultStyle = {
@@ -31,7 +32,12 @@ class Header extends Component {
   //#region methods
   renderLi(children) {
     const result = React.Children.map(children, (i) => (
-      <li style={getFinalStyles(this.li_DefaultStyle, i.props.liStyle)}>{i}</li>
+      <li
+        className={i.props.className}
+        style={getFinalStyles(this.li_DefaultStyle, i.props.liStyle)}
+      >
+        {i}
+      </li>
     ));
     return result;
   }

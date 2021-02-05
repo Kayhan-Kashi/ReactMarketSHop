@@ -22,7 +22,11 @@ class MarketShopHeader extends Component {
       <Header headerId={this.headerId}>
         <HeaderLink link="#">تسویه حساب</HeaderLink>
         <HeaderLink link="#">لیست علاقه مندی (0)</HeaderLink>
-        <HeaderLinkDropDown title="بلاک سفارشی" headerId={this.headerId}>
+        <HeaderLinkDropDown
+          title="بلاک سفارشی"
+          headerId={this.headerId}
+          className="hidden-sm hidden-xs"
+        >
           <HeaderCustomBlock
             imgLink={pic1}
             title="بلاک های محتوا"
