@@ -71,7 +71,6 @@ class HeaderLinkDropDown extends Component {
       return title;
     }
   }
-  //#endregion
 
   render() {
     const {

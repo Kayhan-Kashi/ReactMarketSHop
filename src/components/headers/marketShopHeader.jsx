@@ -10,6 +10,7 @@ import CurrencyDropDown from "./currencyDropDown";
 import pic1 from "../../image/banner/cms-block.jpg";
 import pic2 from "../../image/banner/responsive.jpg";
 import UserHeader from "./userHeader";
+import CustomBlockDropDown from "./customBlockDropDown";
 
 class MarketShopHeader extends Component {
   state = {};
@@ -27,20 +28,22 @@ class MarketShopHeader extends Component {
           headerId={this.headerId}
           className="hidden-sm hidden-xs"
         >
-          <HeaderCustomBlock
-            imgLink={pic1}
-            title="بلاک های محتوا"
-            text={this.text}
-            btnLink="http://www.kuff.ir"
-            float="right"
-          ></HeaderCustomBlock>
-          <HeaderCustomBlock
-            imgLink={pic2}
-            title="بلاک های محتوا"
-            text={this.text}
-            btnLink="http://www.kuff.ir"
-            float="right"
-          ></HeaderCustomBlock>
+          <CustomBlockDropDown>
+            <HeaderCustomBlock
+              imgLink={pic1}
+              title="بلاک های محتوا"
+              text={this.text}
+              btnLink="http://www.kuff.ir"
+              float="right"
+            ></HeaderCustomBlock>
+            <HeaderCustomBlock
+              imgLink={pic2}
+              title="بلاک های محتوا"
+              text={this.text}
+              btnLink="http://www.kuff.ir"
+              float="right"
+            ></HeaderCustomBlock>
+          </CustomBlockDropDown>
         </HeaderLinkDropDown>
         <EmailHeaderLink>info@marketshop.com</EmailHeaderLink>
         <TelHeaderlink> 98778656 21+</TelHeaderlink>
